@@ -130,6 +130,39 @@ impl Soduku {
     }
 
 
+    pub fn clear_move(&mut self, m: Move) -> bool {
+
+        if let Some(index) = self.moves.iter().position(|x| *x == m) {
+
+            self.moves.remove(index);
+            let _idx = m.idx();
+            self.board[_idx as usize] = 0; // clear the value
+            true
+            
+        } else {
+            false
+        }
+
+    }
+
+
+    pub fn pop_move(&mut self) -> Option<Move> {
+
+        if let Some(_lastmove) = self.moves.pop() {
+
+            let _idx = _lastmove.idx();            
+            self.board[_idx as usize] = 0; // clear the value
+            Some(_lastmove)
+
+        } else {
+
+            None
+
+        }
+
+    }
+
+
     // add a move... if its legal :)
     pub fn add_move(&mut self, m: Move) -> MoveStatus {
 
