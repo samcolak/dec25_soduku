@@ -68,6 +68,7 @@ pub struct Soduku {
 
 impl Soduku {
 
+
     // idx to column, row conversion..
     pub fn idx_to_cr(idx: u8) -> (u8, u8) {
         let _idx = u8::clamp(idx, 0, 80);
