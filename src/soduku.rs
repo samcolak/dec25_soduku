@@ -11,17 +11,9 @@ pub enum SolveResult {
 
 
 pub trait Solver
-{
-    
+{    
     fn solve(board: Soduku) -> SolveResult;
-
 }
-
-
-
-
-
-
 
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd)]
