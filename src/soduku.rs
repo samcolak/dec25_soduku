@@ -255,8 +255,21 @@ impl Soduku {
 
     pub fn remaining_nos(valsin: &[u8]) -> Vec<u8> {
         let mut _valsout = Vec::new();
+        let uniques = Self::cleaned_nos(valsin);
 
+        if !uniques.is_empty() {
 
+            if uniques.len() == 9 {
+                return Vec::new(); // return empty set - all done...
+            }
+
+            for i in 1..=9 {
+                if !uniques.contains(&i) {
+                    _valsout.push(i); // return values if they dont appear in set..
+                }
+            }
+
+        }
 
         _valsout
     }
