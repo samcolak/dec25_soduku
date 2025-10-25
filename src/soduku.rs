@@ -86,7 +86,7 @@ pub struct Soduku {
 
 impl Soduku {
 
-    
+
     pub fn board(&self) -> [u8; 81] {
         self.board
     }
@@ -135,6 +135,7 @@ impl Soduku {
     }
 
 
+    // remove specific move..
     pub fn clear_move(&mut self, m: Move) -> bool {
 
         if let Some(index) = self.moves.iter().position(|x| *x == m) {
@@ -151,6 +152,7 @@ impl Soduku {
     }
 
 
+    // remove the last move... (pop from stack)
     pub fn pop_move(&mut self) -> Option<Move> {
 
         if let Some(_lastmove) = self.moves.pop() {
