@@ -54,7 +54,6 @@ fn main() {
         
     // present_grid(&soduku.board(), true);
     
-    let (_result, _time_in_ms) = SodukuSolver::solve(soduku);
-
+    let (_result, _time_in_ms) = SodukuSolver::solve(&soduku);
 
 }

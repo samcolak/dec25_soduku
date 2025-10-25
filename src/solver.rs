@@ -12,7 +12,7 @@ pub struct SodukuSolver {}
 
 impl Solver for SodukuSolver {
 
-    fn solve(board: Soduku) -> (SolveResult, u128) {
+    fn solve(board: &Soduku) -> (SolveResult, u128) {
 
         let _timer = Instant::now();
 

@@ -16,7 +16,7 @@ pub enum SolveResult {
 
 pub trait Solver
 {    
-    fn solve(board: Soduku) -> (SolveResult, u128);
+    fn solve(board: &Soduku) -> (SolveResult, u128);
 }
 
 
