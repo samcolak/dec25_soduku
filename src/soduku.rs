@@ -79,12 +79,17 @@ impl Move {
 
 #[derive(Clone, Debug)]
 pub struct Soduku {
-    pub board: [u8; 81],
+    board: [u8; 81],
     moves: Vec<Move>,
 }
 
 
 impl Soduku {
+
+    
+    pub fn board(&self) -> [u8; 81] {
+        self.board
+    }
 
 
     // idx to column, row conversion..

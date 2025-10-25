@@ -26,7 +26,7 @@ fn main() {
     let mut _clear = false;
     let mut soduku: Soduku = Soduku::new();
 
-    present_grid(&soduku.board, false);
+    present_grid(&soduku.board(), false);
 
     let _m1 = Move::new(0,0,1, 0);
     let _m2 = Move::new(0,1,2, 0);
@@ -36,6 +36,6 @@ fn main() {
     soduku.add_move(_m2);
     soduku.add_move(_m3);
     
-    present_grid(&soduku.board, true);
+    present_grid(&soduku.board(), true);
 
 }
