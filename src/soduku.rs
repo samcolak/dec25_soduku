@@ -176,7 +176,7 @@ impl Soduku {
     }
 
 
-    pub fn fetch_quad(quad: u8, v: &[u8]) -> Vec<u8> {
+    fn fetch_quad(quad: u8, v: &[u8]) -> Vec<u8> {
 
         // 0 1 2
         // 3 4 5
@@ -221,7 +221,7 @@ impl Soduku {
     }
 
 
-    pub fn fetch_column(column: u8, v: &[u8]) -> Vec<u8> {
+    fn fetch_column(column: u8, v: &[u8]) -> Vec<u8> {
 
         let _column = u8::clamp(column, 0, 8);
         let mut _found: Vec<u8> = Vec::new();
@@ -255,7 +255,7 @@ impl Soduku {
 
     }
 
-    pub fn fetch_row(row: u8, v: &[u8]) -> Vec<u8> {
+    fn fetch_row(row: u8, v: &[u8]) -> Vec<u8> {
 
         let _row = u8::clamp(row, 0, 8);
         let mut _found: Vec<u8> = Vec::new();
