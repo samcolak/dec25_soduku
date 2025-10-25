@@ -161,9 +161,7 @@ impl Soduku {
 
     // check if a set contains duplicates (given the input set length == dedup set length)
     fn contains_duplicates(valsin: &[u8]) -> bool {
-        let mut _copy: Vec<u8> = valsin.to_vec();
-        _copy.sort(); // we need to sort first...
-        _copy.dedup();
+        let _copy: Vec<u8> = Self::cleaned_nos(valsin);
         _copy.len() != valsin.len()
     }
 
@@ -178,7 +176,7 @@ impl Soduku {
     }
 
 
-    fn fetch_quad(quad: u8, v: &[u8]) -> Vec<u8> {
+    pub fn fetch_quad(quad: u8, v: &[u8]) -> Vec<u8> {
 
         // 0 1 2
         // 3 4 5
@@ -223,7 +221,24 @@ impl Soduku {
     }
 
 
-    fn fetch_column(column: u8, v: &[u8]) -> Vec<u8> {
+    pub fn cleaned_nos(valsin: &[u8]) -> Vec<u8> {
+        let mut _valsout = valsin.to_vec();
+        _valsout.sort();
+        _valsout.dedup();
+        _valsout
+    }
+
+
+    pub fn remaining_nos(valsin: &[u8]) -> Vec<u8> {
+        let mut _valsout = Vec::new();
+
+        
+
+        _valsout
+    }
+
+
+    pub fn fetch_column(column: u8, v: &[u8]) -> Vec<u8> {
 
         let _column = u8::clamp(column, 0, 8);
         let mut _found: Vec<u8> = Vec::new();
@@ -258,7 +273,7 @@ impl Soduku {
     }
 
 
-    fn fetch_row(row: u8, v: &[u8]) -> Vec<u8> {
+    pub fn fetch_row(row: u8, v: &[u8]) -> Vec<u8> {
 
         let _row = u8::clamp(row, 0, 8);
         let mut _found: Vec<u8> = Vec::new();
