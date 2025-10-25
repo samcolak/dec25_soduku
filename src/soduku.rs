@@ -1,3 +1,7 @@
+use std::fs;
+
+use serde_json::Value;
+
 
 
 
@@ -85,6 +89,58 @@ pub struct Soduku {
 
 
 impl Soduku {
+
+
+    pub fn load(&mut self, filename: &str) -> bool {
+
+        let _contents = match fs::read_to_string(filename) {
+            Ok(_s) => _s,
+            Err(_e) => "".to_string()
+        };        
+
+        if !_contents.is_empty() {
+
+            let _json_version: Value = match serde_json::from_str(&_contents) {
+                Ok(_c) => _c,
+                Err(_e) => Value::Null
+            };
+    
+            if _json_version != Value::Null {
+
+                let _array_of_moves = _json_version.as_array().unwrap();
+
+                for _listitem in _array_of_moves {
+
+                    if let Some(_v) = _listitem.as_str() {                        
+                        
+                        let _parts = _v.split(".").collect::<Vec<&str>>();
+                        
+                        match _parts.len() {
+                            3 => {
+                                
+                                let _column = _parts[0].parse::<u8>().unwrap();
+                                let _row = _parts[1].parse::<u8>().unwrap();
+                                let _value = _parts[2].parse::<u8>().unwrap();
+
+                                let _m = Move::new(_column, _row, _value, 0);
+                                self.add_move(_m);
+
+                            }
+                            _ => {
+                                // ignore...
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+        }
+
+        false
+        
+    }
 
 
     pub fn board(&self) -> [u8; 81] {

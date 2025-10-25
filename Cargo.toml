@@ -5,3 +5,5 @@ edition = "2024"
 
 [dependencies]
 ansi-escapes = "0.1.0"
+serde = "*"
+serde_json = "*"
