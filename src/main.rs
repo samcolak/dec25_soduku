@@ -6,13 +6,15 @@
 #![allow(unused_parens)]
 #![allow(unused_attributes)]
 #![allow(dead_code)]
+#![allow(unused_imports)]
+
 
 
 mod display;
 mod soduku;
 
 use display::{present_grid};
-use soduku::{Soduku, Move};
+use soduku::{Soduku, Move, MoveStatus};
 
 
 
