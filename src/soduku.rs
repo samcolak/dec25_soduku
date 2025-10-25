@@ -77,6 +77,13 @@ impl Soduku {
     }
 
 
+    pub fn cr_to_idx(column: u8, row: u8) -> u8 {
+        let _column = u8::clamp(column, 0, 8);
+        let _row = u8::clamp(row, 0, 8);
+        (_column + (_row * 9))
+    }
+
+
     pub fn remaining_moves(&self) -> Vec<Move> {
 
         let mut _out: Vec<Move> = Vec::new();
@@ -132,7 +139,7 @@ impl Soduku {
             } else {
 
                 MoveStatus::Illegal
-                
+
             }
 
         } else {
