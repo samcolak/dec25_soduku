@@ -176,14 +176,13 @@ impl Soduku {
     }
 
 
-    // check if a quadrant is now completed
-    pub fn check_quad(quad: u8, v: &[u8]) -> MoveStatus {
-
-        let _quad = u8::clamp(quad, 0, 8);
+    pub fn fetch_quad(quad: u8, v: &[u8]) -> Vec<u8> {
 
         // 0 1 2
         // 3 4 5
         // 6 7 8
+
+        let _quad = u8::clamp(quad, 0, 8);
 
         let _x = (_quad % 3) * 3;
         let _y = (_quad / 3) * 3;
@@ -200,6 +199,16 @@ impl Soduku {
             }
         }
 
+        _found
+        
+    }
+
+
+    // check if a quadrant is now completed
+    pub fn check_quad(quad: u8, v: &[u8]) -> MoveStatus {
+
+        let mut _found: Vec<u8> = Self::fetch_quad(quad, v);
+
         if Self::contains_duplicates(&_found) {
             MoveStatus::Duplicate
         } else {
@@ -212,8 +221,7 @@ impl Soduku {
     }
 
 
-    // check that a column validity status...
-    pub fn check_column(column: u8, v: &[u8]) -> MoveStatus {
+    pub fn fetch_column(column: u8, v: &[u8]) -> Vec<u8> {
 
         let _column = u8::clamp(column, 0, 8);
         let mut _found: Vec<u8> = Vec::new();
@@ -226,6 +234,16 @@ impl Soduku {
             }
         }
 
+        _found
+        
+    }
+
+
+    // check that a column validity status...
+    pub fn check_column(column: u8, v: &[u8]) -> MoveStatus {
+
+        let mut _found: Vec<u8> = Self::fetch_column(column, v);
+
         if Self::contains_duplicates(&_found) {
             MoveStatus::Duplicate
         } else {
@@ -237,9 +255,7 @@ impl Soduku {
 
     }
 
-
-    // check the row validity status...
-    pub fn check_row(row: u8, v: &[u8]) -> MoveStatus {
+    pub fn fetch_row(row: u8, v: &[u8]) -> Vec<u8> {
 
         let _row = u8::clamp(row, 0, 8);
         let mut _found: Vec<u8> = Vec::new();
@@ -251,6 +267,16 @@ impl Soduku {
                 _found.push(_v);
             }
         }
+
+        _found
+
+    }
+
+
+    // check the row validity status...
+    pub fn check_row(row: u8, v: &[u8]) -> MoveStatus {
+
+        let mut _found: Vec<u8> = Self::fetch_row(row, v);
 
         if Self::contains_duplicates(&_found) {
             MoveStatus::Duplicate
