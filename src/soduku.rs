@@ -96,7 +96,7 @@ impl Soduku {
         for (_i, _c) in self.board.iter().enumerate() {
             let (_column, _row) = Self::idx_to_cr(_i as u8);
             if self.board[_i] == 0 {
-                _out.push(Move::new(_column, _row, 0, 0))
+                _out.push(Move::new(_column, _row, 0, -1))
             }
         }
 
