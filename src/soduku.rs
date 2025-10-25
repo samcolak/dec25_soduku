@@ -70,7 +70,7 @@ impl Soduku {
 
     // idx to column, row conversion..
     pub fn idx_to_cr(idx: u8) -> (u8, u8) {
-        let _idx = u8::clamp(idx, 0, 81);
+        let _idx = u8::clamp(idx, 0, 80);
         let _column = _idx % 9;
         let _row = _idx / 9;
         (_column, _row)
