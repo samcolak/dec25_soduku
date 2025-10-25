@@ -68,7 +68,7 @@ pub struct Soduku {
 
 impl Soduku {
 
-
+    // idx to column, row conversion..
     pub fn idx_to_cr(idx: u8) -> (u8, u8) {
         let _idx = u8::clamp(idx, 0, 81);
         let _column = _idx % 9;
@@ -77,6 +77,7 @@ impl Soduku {
     }
 
 
+    // column, row to idx conversion..
     pub fn cr_to_idx(column: u8, row: u8) -> u8 {
         let _column = u8::clamp(column, 0, 8);
         let _row = u8::clamp(row, 0, 8);
@@ -84,6 +85,7 @@ impl Soduku {
     }
 
 
+    // find remaining moves available..
     pub fn remaining_moves(&self) -> Vec<Move> {
 
         let mut _out: Vec<Move> = Vec::new();
@@ -100,6 +102,7 @@ impl Soduku {
     }
 
 
+    // create a new board...
     pub fn new() -> Self {
         Self {
             board: [0; 81],
@@ -108,6 +111,7 @@ impl Soduku {
     }
 
 
+    // add a move... if its legal :)
     pub fn add_move(&mut self, m: Move) -> MoveStatus {
 
         let mut _newboard = self.board;
@@ -119,6 +123,7 @@ impl Soduku {
 
             _newboard[idx as usize] = m.v;
 
+            // check x, y and quadrant perspectives...
             let _vcheck = Self::check_column(m.column, &_newboard);
             let _hcheck = Self::check_row(m.row, &_newboard);
             let _qcheck = Self::check_quad(quad, &_newboard);
@@ -128,6 +133,7 @@ impl Soduku {
                 self.board = _newboard;
                 self.moves.push(m);
 
+                // was this the last move ... ?
                 let remaining = self.remaining_moves();
                 
                 if remaining.is_empty() {
@@ -150,6 +156,7 @@ impl Soduku {
     }
 
 
+    // check if a set contains duplicates (given the input set length == dedup set length)
     fn contains_duplicates(valsin: &[u8]) -> bool {
         let mut _copy: Vec<u8> = valsin.to_vec();
         _copy.sort(); // we need to sort first...
@@ -158,6 +165,7 @@ impl Soduku {
     }
 
 
+    // calculate the sum of all the numbers in the sequence...
     fn sum(valsin: &[u8]) -> u8 {
         let mut _total: u8 = 0;
         for _c in valsin {
@@ -167,6 +175,7 @@ impl Soduku {
     }
 
 
+    // check if a quadrant is now completed
     pub fn check_quad(quad: u8, v: &[u8]) -> MoveStatus {
 
         let _quad = u8::clamp(quad, 0, 8);
@@ -202,6 +211,7 @@ impl Soduku {
     }
 
 
+    // check that a column validity status...
     pub fn check_column(column: u8, v: &[u8]) -> MoveStatus {
 
         let _column = u8::clamp(column, 0, 8);
@@ -227,6 +237,7 @@ impl Soduku {
     }
 
 
+    // check the row validity status...
     pub fn check_row(row: u8, v: &[u8]) -> MoveStatus {
 
         let _row = u8::clamp(row, 0, 8);
