@@ -1,0 +1,7 @@
+[package]
+name = "soduku"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ansi-escapes = "0.1.0"
