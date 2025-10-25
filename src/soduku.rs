@@ -1,6 +1,3 @@
-use std::ops::Index;
-
-
 
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd)]
@@ -35,9 +32,9 @@ impl Move {
 
     pub fn new(column: u8, row: u8, val: u8) -> Self {
         Self {
-            column,
-            row,
-            v: val
+            column: u8::clamp(column, 0, 8),
+            row : u8::clamp(row, 0, 8),
+            v: u8::clamp(val, 0, 9)
         }
     }
 
@@ -72,8 +69,9 @@ impl Soduku {
 
 
     pub fn idx_to_cr(idx: u8) -> (u8, u8) {
-        let _column = idx % 9;
-        let _row = idx / 9;
+        let _idx = u8::clamp(idx, 0, 81);
+        let _column = _idx % 9;
+        let _row = _idx / 9;
         (_column, _row)
     }
 
@@ -152,12 +150,14 @@ impl Soduku {
 
     pub fn check_quad(quad: u8, v: &[u8]) -> MoveStatus {
 
+        let _quad = u8::clamp(quad, 0, 8);
+
         // 0 1 2
         // 3 4 5
         // 6 7 8
 
-        let _x = (quad % 3) * 3;
-        let _y = (quad / 3) * 3;
+        let _x = (_quad % 3) * 3;
+        let _y = (_quad / 3) * 3;
 
         let mut _found: Vec<u8> = Vec::new();
 
@@ -185,10 +185,11 @@ impl Soduku {
 
     pub fn check_column(column: u8, v: &[u8]) -> MoveStatus {
 
+        let _column = u8::clamp(column, 0, 8);
         let mut _found: Vec<u8> = Vec::new();
 
         for _row in 0..9 {
-            let _index: usize = (column + (_row * 9)) as usize;
+            let _index: usize = (_column + (_row * 9)) as usize;
             let _v = v[_index];
             if _v > 0 {
                 _found.push(_v);
@@ -209,10 +210,11 @@ impl Soduku {
 
     pub fn check_row(row: u8, v: &[u8]) -> MoveStatus {
 
+        let _row = u8::clamp(row, 0, 8);
         let mut _found: Vec<u8> = Vec::new();
 
         for _column in 0..9 {
-            let _index: usize = (_column + (row * 9)) as usize;
+            let _index: usize = (_column + (_row * 9)) as usize;
             let _v = v[_index];
             if _v > 0 {
                 _found.push(_v);
