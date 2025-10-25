@@ -22,3 +22,8 @@ Sudoku is a logic-based number puzzle played on a 9x9 grid, which is also divide
 Part of the Rust developers challenge
 
 
+## Info
+
+1. Run using the command <code>cargo run ./board1.json</code>
+2. Board information is a json array of moves in the form "column.row.value" - One move per array item
+3. Not specifying a file will result in a blank board
