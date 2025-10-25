@@ -2,7 +2,7 @@
 
 Solve a soduku board (3x3 quads of 3x3) as fast as you can
 
-![alt text](https://github.com/samcolak/dec25_soduku/boardpic.png)
+![alt text](https://github.com/samcolak/dec25_soduku/blob/main/boardpic.png?raw=true)
 
 ## What is Soduku
 
