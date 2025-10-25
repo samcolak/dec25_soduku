@@ -1,6 +1,9 @@
 
 use ansi_escapes::*;
 
+use ansi_term::Style;
+use ansi_term::Colour::{Blue, Cyan, Yellow, Red, RGB};
+
 const ESC: char = 27u8 as char;
 
 
@@ -34,7 +37,7 @@ pub fn present_grid(v: &[u8], clear: bool) {
             }
 
             match _v {
-                0 => { _rowout += "⎕ "; },
+                0 => { _rowout += &format!("{} ", RGB(120, 120, 120).paint("⎕")); },
                 n => { _rowout += &format!("{n} "); }
             };
 
