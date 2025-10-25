@@ -1,3 +1,5 @@
+use std::ops::Index;
+
 
 
 
@@ -67,6 +69,30 @@ pub struct Soduku {
 
 
 impl Soduku {
+
+
+    pub fn idx_to_cr(idx: u8) -> (u8, u8) {
+        let _column = idx % 9;
+        let _row = idx / 9;
+        (_column, _row)
+    }
+
+
+    pub fn remaining_moves(&self) -> Vec<Move> {
+
+        let mut _out: Vec<Move> = Vec::new();
+
+        for (_i, _c) in self.board.iter().enumerate() {
+            let (_column, _row) = Self::idx_to_cr(_i as u8);
+            if self.board[_i] == 0 {
+                _out.push(Move::new(_column, _row, 0))
+            }
+        }
+
+        _out
+
+    }
+
 
     pub fn new() -> Self {
         Self {
