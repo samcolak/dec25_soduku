@@ -9,7 +9,8 @@ pub enum MoveStatus {
     Undefined = 0,
     Valid = 1,
     ValidPartialComplete = 5,
-    ValidComplete = 8
+    ValidComplete = 8,
+    GameFinished = 9,
 }
 
 
@@ -116,11 +117,22 @@ impl Soduku {
             let _qcheck = Self::check_quad(quad, &_newboard);
 
             if (_vcheck as i8 > 0) && (_hcheck as i8 > 0) && (_qcheck as i8 > 0) {
+                
                 self.board = _newboard;
                 self.moves.push(m);
-                MoveStatus::Valid
+
+                let remaining = self.remaining_moves();
+                
+                if remaining.is_empty() {
+                    MoveStatus::GameFinished
+                } else {
+                    MoveStatus::Valid
+                }
+
             } else {
+
                 MoveStatus::Illegal
+                
             }
 
         } else {
