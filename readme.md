@@ -21,7 +21,6 @@ Sudoku is a logic-based number puzzle played on a 9x9 grid, which is also divide
 
 Part of the Rust developers challenge
 
-
 ## Info
 
 1. Run using the command <code>cargo run ./board1.json</code>
