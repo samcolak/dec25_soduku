@@ -16,16 +16,18 @@ mod soduku;
 mod solver;
 
 use display::{present_grid};
-use soduku::{Soduku, Move, MoveStatus, SolveResult};
-use solver::{RecursiveSolver};
+use soduku::{Soduku, Move, MoveStatus, SolveResult, Solver};
+use solver::{SodukuSolver};
 
 
 
 fn main() {
 
-    let mut _clear = false;
     let mut soduku: Soduku = Soduku::new();
 
+    // example code for the how the board works...
+
+    // clear indicates to overwrite a current displayed board - false does not erase the previous board..
     present_grid(&soduku.board(), false);
 
     let _m1 = Move::new(0,0,1, 0);
@@ -35,7 +37,10 @@ fn main() {
     soduku.add_move(_m1);
     soduku.add_move(_m2);
     soduku.add_move(_m3);
-    
+        
     present_grid(&soduku.board(), true);
+    
+    let (_result, _time_in_ms) = SodukuSolver::solve(soduku);
+
 
 }
