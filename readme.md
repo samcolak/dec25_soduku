@@ -15,7 +15,7 @@ Sudoku is a logic-based number puzzle played on a 9x9 grid, which is also divide
 ## Solver
 
 1. You must create a "solver" than resolves the board (without modifying the original board code) - using the supplied "solver.rs"
-
+2. Example board manipulation can be found in "main.rs"
 
 ## Challenge
 
