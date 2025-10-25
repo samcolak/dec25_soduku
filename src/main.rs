@@ -26,11 +26,11 @@ fn main() {
 
     present_grid(&soduku.board, false);
 
-    let _m = Move::new(0,0,1);
-    let _m2 = Move::new(0,1,2);
-    let _m3 = Move::new(0,2,3);
+    let _m1 = Move::new(0,0,1, 0);
+    let _m2 = Move::new(0,1,2, 0);
+    let _m3 = Move::new(0,2,3, 0);
 
-    soduku.add_move(_m);
+    soduku.add_move(_m1);
     soduku.add_move(_m2);
     soduku.add_move(_m3);
     

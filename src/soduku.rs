@@ -25,17 +25,19 @@ impl From<MoveStatus> for i8 {
 pub struct Move {
     pub column: u8,
     pub row: u8,
-    pub v: u8
+    pub v: u8,
+    pub owner: i8,
 }
 
 
 impl Move {
 
-    pub fn new(column: u8, row: u8, val: u8) -> Self {
+    pub fn new(column: u8, row: u8, val: u8, owner: i8) -> Self {
         Self {
             column: u8::clamp(column, 0, 8),
             row : u8::clamp(row, 0, 8),
-            v: u8::clamp(val, 0, 9)
+            v: u8::clamp(val, 0, 9),
+            owner
         }
     }
 
@@ -94,7 +96,7 @@ impl Soduku {
         for (_i, _c) in self.board.iter().enumerate() {
             let (_column, _row) = Self::idx_to_cr(_i as u8);
             if self.board[_i] == 0 {
-                _out.push(Move::new(_column, _row, 0))
+                _out.push(Move::new(_column, _row, 0, 0))
             }
         }
 
@@ -254,6 +256,7 @@ impl Soduku {
         }
 
     }
+
 
     fn fetch_row(row: u8, v: &[u8]) -> Vec<u8> {
 
