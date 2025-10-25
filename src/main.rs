@@ -12,10 +12,11 @@
 
 mod display;
 mod soduku;
+mod solver;
 
 use display::{present_grid};
-use soduku::{Soduku, Move, MoveStatus};
-
+use soduku::{Soduku, Move, MoveStatus, SolveResult};
+use solver::{RecursiveSolver};
 
 
 

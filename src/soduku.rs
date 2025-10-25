@@ -1,5 +1,29 @@
 
 
+
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd)]
+#[repr(u8)]
+pub enum SolveResult {
+    Undefined = 0,
+    Impossible = 1,
+    Completed = 9
+}
+
+
+pub trait Solver
+{
+    
+    fn solve(board: Soduku) -> SolveResult;
+
+}
+
+
+
+
+
+
+
+
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd)]
 #[repr(i8)]
 pub enum MoveStatus {
@@ -232,7 +256,7 @@ impl Soduku {
     pub fn remaining_nos(valsin: &[u8]) -> Vec<u8> {
         let mut _valsout = Vec::new();
 
-        
+
 
         _valsout
     }
