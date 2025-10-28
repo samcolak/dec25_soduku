@@ -154,11 +154,18 @@ impl Soduku {
 
 
     // idx to column, row conversion..
-    pub fn idx_to_cr(idx: u8) -> (u8, u8) {
+    pub fn idx_to_cr(idx: u8) -> (u8, u8, u8) {
+
         let _idx = u8::clamp(idx, 0, 80);
         let _column = _idx % 9;
         let _row = _idx / 9;
-        (_column, _row)
+
+        let _qx = _column / 3;
+        let _qy = _row / 3;
+        let _quad = ((_qy * 3) + _qx);
+
+        (_column, _row, _quad)
+        
     }
 
 
@@ -176,7 +183,7 @@ impl Soduku {
         let mut _out: Vec<Move> = Vec::new();
 
         for (_i, _c) in self.board.iter().enumerate() {
-            let (_column, _row) = Self::idx_to_cr(_i as u8);
+            let (_column, _row, _quad) = Self::idx_to_cr(_i as u8);
             if self.board[_i] == 0 {
                 _out.push(Move::new(_column, _row, 0, -1))
             }
@@ -293,6 +300,11 @@ impl Soduku {
     }
 
 
+    pub fn quad(&self, quad: u8) -> Vec<u8> {
+        Self::fetch_quad(quad, &self.board)
+    }
+
+
     pub fn fetch_quad(quad: u8, v: &[u8]) -> Vec<u8> {
 
         // 0 1 2
@@ -368,6 +380,11 @@ impl Soduku {
     }
 
 
+    pub fn column(&self, column: u8) -> Vec<u8> {
+        Self::fetch_column(column, &self.board)
+    }
+
+
     pub fn fetch_column(column: u8, v: &[u8]) -> Vec<u8> {
 
         let _column = u8::clamp(column, 0, 8);
@@ -400,6 +417,11 @@ impl Soduku {
             }
         }
 
+    }
+
+
+    pub fn row(&self, row: u8) -> Vec<u8> {
+        Self::fetch_row(row, &self.board)
     }
 
 
